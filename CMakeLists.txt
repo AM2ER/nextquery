@@ -2,8 +2,11 @@ cmake_minimum_required(VERSION 3.7)
 
 add_definitions(-std=c++17)
 
+# project name
+set(NextQuery NextQuery)
+
 # set project name
-project(NextQuery CXX)
+project(${NextQuery} CXX)
 
 #set compiler version
 set(CMAKE_C_STANDARD 99)
@@ -35,9 +38,6 @@ add_subdirectory(googletest)
 # add src folder for tests
 add_subdirectory(test)
 
-# addd curl
-
-
 enable_testing()
 
-add_executable(NextQuery src/NextQuery.cpp)
+add_executable(${NextQuery} src/NextQuery.cpp)
