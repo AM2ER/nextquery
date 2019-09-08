@@ -16,7 +16,9 @@ Capstone project following the Udacity C++ nanodegree
 
 ## Basic Build Instructions
 
-1. Clone this repo.
-2. Make a build directory in the top level directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./NextQuery <keywords to search space separated>`.
+1. Clone this repo
+2. cd in to the root folder and clone googletest : 
+    git clone https://github.com/google/googletest.git
+3. Make a build directory in the top level directory: `mkdir build && cd build`
+4. Compile: `cmake .. && make`
+5. Run it: `./NextQuery <keywords to search space separated>`.
