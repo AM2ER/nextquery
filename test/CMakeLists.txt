@@ -2,16 +2,18 @@ cmake_minimum_required(VERSION 3.7)
 
 set(THIS tests)
 
-add_executable(${THIS} NextQueryTests.cpp UrlBuilderTests.cpp ../src/UrlBuilder.cpp)
+add_executable(${THIS} NextQueryTest.cpp UrlBuilderTest.cpp HttpClientTest.cpp ../src/UrlBuilder.cpp ../src/HttpClient.cpp)
 
-target_link_libraries(${THIS} PUBLIC
-        gtest_main
-        )
+target_link_libraries(${THIS} PUBLIC gtest_main curlpp)
 
 add_test(
-        NAME NextQueryTests COMMAND NextQueryTests
+        NAME NextQueryTest COMMAND NextQueryTest
 )
 
 add_test(
-        NAME UrlBuilderTests COMMAND UrlBuilderTests
+        NAME UrlBuilderTest COMMAND UrlBuilderTest
+)
+
+add_test(
+        NAME HttpClientTest COMMAND HttpClientTest
 )

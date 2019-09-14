@@ -14,6 +14,12 @@ Capstone project following the Udacity C++ nanodegree
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
 
+## Dependencies to install
+
+sudo apt install libcurl3
+sudo apt install libpoco-dev
+sudo apt-get install openssl libssl-dev
+
 ## Basic Build Instructions
 
 1. Clone this repo
@@ -22,3 +28,4 @@ Capstone project following the Udacity C++ nanodegree
 3. Make a build directory in the top level directory: `mkdir build && cd build`
 4. Compile: `cmake .. && make`
 5. Run it: `./NextQuery <keywords to search space separated>`.
+

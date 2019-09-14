@@ -25,12 +25,24 @@ configure_file (
         "${CMAKE_SOURCE_DIR}/config/AppConfig.h"
 )
 
+# set bin location
+set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
+
+# set location of executable
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+
+# set libraries output path
+set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
+
 # add the binary tree to the search path for include files
 # so that we will find TutorialConfig.h
 include_directories("${PROJECT_BINARY_DIR}")
 
 # add source dir
 add_subdirectory(src)
+
+# add curlpp dir
+add_subdirectory(curlpp)
 
 # add google test source dir
 add_subdirectory(googletest)

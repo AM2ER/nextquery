@@ -6,10 +6,15 @@
 #define HTTPCLIENT_H
 
 #include <string>
+#include "UrlBuilder.h"
 
 class HttpClient
 {
-    std::string query(std::string query);
+public:
+    std::string query(std::vector<std::string> keywords);
+
+private:
+    UrlBuilder urlBuilder;
 };
 
 
