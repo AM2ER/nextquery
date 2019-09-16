@@ -6,5 +6,6 @@ set(CORE_LIB core)
 add_library(${CORE_LIB} STATIC
         NextQuery.cpp
         HttpClient.cpp
+        QueryResult.cpp
         SearchRequest.cpp
         UrlBuilder.cpp)
