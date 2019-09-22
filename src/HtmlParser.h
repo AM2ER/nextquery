@@ -8,13 +8,22 @@
 
 #include <vector>
 #include <string>
+#include <map>
 
 #include "QueryResult.h"
+#include "AbstractBase.h"
 
-class HtmlParser
+class HtmlParser : AbstractBase
 {
 public:
+    HtmlParser();
+
     std::vector<QueryResult> parse(std::string htmlPage);
+
+private:
+    std::string encode(std::string basicString);
+
+    std::map<std::string, std::string> letterMappings;
 };
 
 

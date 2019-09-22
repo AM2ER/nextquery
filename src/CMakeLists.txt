@@ -7,5 +7,5 @@ add_library(${CORE_LIB} STATIC
         NextQuery.cpp
         HttpClient.cpp
         QueryResult.cpp
-        SearchRequest.cpp
+        QueryController.cpp
         UrlBuilder.cpp)

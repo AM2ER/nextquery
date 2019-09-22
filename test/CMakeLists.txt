@@ -2,7 +2,17 @@ cmake_minimum_required(VERSION 3.7)
 
 set(THIS tests)
 
-add_executable(${THIS} NextQueryTest.cpp UrlBuilderTest.cpp HttpClientTest.cpp HtmlParserTest.cpp FileUtil.h ../src/HtmlParser.cpp ../src/QueryResult.cpp ../src/UrlBuilder.cpp ../src/HttpClient.cpp ../tinyxml2/tinyxml2.cpp resources/query_response.html)
+add_executable(${THIS} NextQueryTest.cpp
+        UrlBuilderTest.cpp
+        HttpClientTest.cpp
+        HtmlParserTest.cpp
+        FileUtil.h
+        ../src/HtmlParser.cpp
+        ../src/QueryResult.cpp
+        ../src/UrlBuilder.cpp
+        ../src/HttpClient.cpp
+        ../src/QueryController.cpp
+        resources/query_response.html)
 
 target_link_libraries(${THIS} PUBLIC gtest_main curlpp)
 

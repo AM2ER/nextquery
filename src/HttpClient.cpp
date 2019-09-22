@@ -11,7 +11,7 @@
 #include "../curlpp/include/curlpp/Easy.hpp"
 #include "../curlpp/include/curlpp/Options.hpp"
 
-std::string HttpClient::query(std::vector<std::string> keywords)
+std::string HttpClient::query(std::string url, std::vector<std::string> keywords)
 {
     curlpp::Cleanup cleaner;
     curlpp::Easy request;
@@ -21,7 +21,7 @@ std::string HttpClient::query(std::vector<std::string> keywords)
     request.setOpt(new curlpp::options::WriteStream(&std::cout));
 
     // Setting the URL to retrive.
-    request.setOpt(new curlpp::options::Url(urlBuilder.build(keywords)));
+    request.setOpt(new curlpp::options::Url(urlBuilder.build(url, keywords)));
 
     std::ostringstream response;
     request.setOpt(new curlpp::options::WriteStream(&response));

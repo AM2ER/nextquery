@@ -3,6 +3,7 @@
 //
 #include <gtest/gtest.h>
 #include "../src/UrlBuilder.h"
+#include "../src/QueryController.h"
 
 
 // The fixture for testing class Foo.
@@ -11,6 +12,7 @@ class UrlBuilderTest : public ::testing::Test
 protected:
     // You can remove any or all of the following functions if its body
     // is empty.
+    QueryController queryController;
     UrlBuilder urlBuilder;
 
     std::vector<std::string> keywords;
@@ -31,7 +33,7 @@ TEST_F(UrlBuilderTest, oneKeyword)
 {
     keywords.push_back("c++");
 
-    std::string query = urlBuilder.build(keywords);
+    std::string query = urlBuilder.build(queryController.getUrls()["google"], keywords);
 
     ASSERT_EQ(query, "https://www.google.com/search?q=c%2B%2B");
 }
@@ -42,7 +44,7 @@ TEST_F(UrlBuilderTest, twoKeyWords)
     keywords.push_back("is");
     keywords.push_back("hard");
 
-    std::string query = urlBuilder.build(keywords);
+    std::string query = urlBuilder.build(queryController.getUrls()["google"], keywords);
 
     ASSERT_EQ(query, "https://www.google.com/search?q=c%2B%2B+is+hard");
 }

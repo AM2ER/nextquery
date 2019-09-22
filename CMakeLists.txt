@@ -47,8 +47,6 @@ add_subdirectory(curlpp)
 # add google test source dir
 add_subdirectory(googletest)
 
-add_subdirectory(tinyxml2)
-
 # add src folder for tests
 add_subdirectory(test)
 
