@@ -9,6 +9,7 @@
 #include <string>
 #include <vector>
 #include <thread>
+#include <mutex>
 
 #include "QueryResult.h"
 
@@ -16,10 +17,11 @@ class QueryRunner
 {
 public:
     void executeQuery(std::string source, std::string url, std::vector<std::string> keywords);
-    std::shared_ptr<std::vector<QueryResult>> getResults();
+    std::vector<QueryResult> *getResults();
 
 private:
     std::vector<std::thread> workers;
+    std::mutex _mutex;
     void exec(std::string source, std::string url, std::vector<std::string> keywords);
 };
 

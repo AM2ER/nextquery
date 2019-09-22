@@ -16,7 +16,7 @@ std::string BingHtmlParser::getTitleEndPattern()
 
 int BingHtmlParser::getTitleShift()
 {
-    return 32;
+    return 34;
 }
 
 std::string BingHtmlParser::getDescriptionPattern()
@@ -26,5 +26,5 @@ std::string BingHtmlParser::getDescriptionPattern()
 
 int BingHtmlParser::getDescriptionShift()
 {
-    return 32;
+    return 1;
 }

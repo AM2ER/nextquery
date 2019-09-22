@@ -27,10 +27,9 @@ public:
     std::vector<QueryResult> parse(std::string source, std::string htmlPage);
 
 private:
-    std::string encode(std::string basicString);
+    std::string encode(std::string pattern);
 
     std::map<std::string, std::string> letterMappings;
 };
-
 
 #endif //NEXTQUERY_HTMLPARSER_H

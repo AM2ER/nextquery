@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../config/AppConfig.h"
+#include "NextQuery.h"
 
 using namespace std;
 
@@ -12,6 +12,20 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    QueryController queryController;
+
+    std::vector<std::string> keywords;
+
+    keywords.push_back("c++");
+
+    std::vector<QueryResult> *results = queryController.createQueryUrl(keywords);
+
+    for(QueryResult qr : *results)
+    {
+        std::cout << qr.getSource() << " :: " << qr.getDesc() << std::endl;
+        std::cout << qr.getUrl() << std::endl;
+        std:cout << "\n";
+    }
 
     return 0;
 }

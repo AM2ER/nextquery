@@ -26,5 +26,5 @@ std::string GoogleHtmlParser::getDescriptionPattern()
 
 int GoogleHtmlParser::getDescriptionShift()
 {
-    return 35;
+    return 34;
 }

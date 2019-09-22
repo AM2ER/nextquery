@@ -52,12 +52,12 @@ std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlP
     return queryResults;
 }
 
-std::string HtmlParser::encode(std::string basicString)
+std::string HtmlParser::encode(std::string pattern)
 {
     for (const auto &[key, value] : letterMappings)
     {
-        basicString = ReplaceAll(basicString, key, value);
+        pattern = ReplaceAll(pattern, key, value);
     }
 
-    return basicString;
+    return pattern;
 }

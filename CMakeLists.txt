@@ -41,8 +41,12 @@ include_directories("${PROJECT_BINARY_DIR}")
 # add source dir
 add_subdirectory(src)
 
+file(GLOB PROJECT_SRCS src/*.cpp)
+
 # add curlpp dir
 add_subdirectory(curlpp)
+
+file(GLOB CURLPP_SRCS curlpp/src/**.cpp)
 
 # add google test source dir
 add_subdirectory(googletest)
@@ -52,4 +56,4 @@ add_subdirectory(test)
 
 enable_testing()
 
-add_executable(${NextQuery} src/NextQuery.cpp)
+add_executable(${NextQuery} ${CURLPP_SRCS} ${PROJECT_SRCS})

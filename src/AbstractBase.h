@@ -3,6 +3,10 @@
 //
 // Created by ameer on 9/17/19.
 //
+
+#ifndef NEXTQUERY_ABSTRACTBASE_CPP
+#define NEXTQUERY_ABSTRACTBASE_CPP
+
 class AbstractBase
 {
 public:
@@ -10,12 +14,16 @@ public:
     {
         size_t start_pos = 0;
 
+        int len = search.length();
+
         while ((start_pos = str.find(search, start_pos)) != std::string::npos)
         {
-            str.replace(start_pos, 1, replace);
+            str.replace(start_pos, len, replace);
             start_pos += replace.length(); // Handles case where 'search' is a substring of 'replace'
         }
 
         return str;
     }
 };
+
+#endif //NEXTQUERY_ABSTRACTBASE_CPP

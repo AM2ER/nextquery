@@ -7,6 +7,7 @@
 UrlBuilder::UrlBuilder()
 {
     letterMappings["+"] = "%2B";
+    letterMappings["-"] = "%2B";
 }
 
 std::string UrlBuilder::build(std::string url, std::vector<std::string> params)

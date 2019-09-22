@@ -13,8 +13,6 @@ protected:
     GoogleHtmlParser googleHtmlParser;
     BingHtmlParser bingHtmlParser;
 
-    std::vector<std::string> keywords;
-
     HtmlParserTest()
     {
         // You can do set-up work for each test here.
@@ -40,7 +38,7 @@ TEST_F(HtmlParserTest, parseGoogleHtmlPage)
 
     ASSERT_EQ(queryResult.getSource(), "google");
     ASSERT_EQ(queryResult.getUrl(),"https://fr.wikipedia.org/wiki/C%252B%252B&amp;sa=U&amp;ved=2ahUKEwiIm_rZstLkAhUQ1RoKHTnoC7wQFnoECAsQBA&amp;usg=AOvVaw1q-f-t3-FmMZ0lbYGtK1Ud");
-    ASSERT_EQ(queryResult.getDesc(),"++ &#8212; Wikip�dia");
+    ASSERT_EQ(queryResult.getDesc(),"C++ &#8212; Wikip�dia");
 }
 
 TEST_F(HtmlParserTest, parseBingHtmlPage)
@@ -54,6 +52,10 @@ TEST_F(HtmlParserTest, parseBingHtmlPage)
     QueryResult &queryResult = results.front();
 
     ASSERT_EQ(queryResult.getSource(), "bing");
-    ASSERT_EQ(queryResult.getUrl(),"https://fr.wikipedia.org/wiki/C%2B%2B");
-    ASSERT_EQ(queryResult.getDesc(),"C++ — Wikip&#233;dia");
+    ASSERT_EQ(queryResult.getUrl(),"https://fr.wikipedia.org/wiki/C++");
+    const std::string &string = queryResult.getDesc();
+
+    std::cout << string << std::endl;
+
+    ASSERT_EQ(string, "C++ \xE2\x80\x94 Wikip&#233;dia");
 }

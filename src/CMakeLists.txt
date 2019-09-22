@@ -4,8 +4,12 @@ set(CORE_LIB core)
 
 # add source code as library
 add_library(${CORE_LIB} STATIC
-        NextQuery.cpp
         HttpClient.cpp
         QueryResult.cpp
+        QueryRunner.cpp
         QueryController.cpp
-        UrlBuilder.cpp)
+        HtmlParser.cpp
+        GoogleHtmlParser.cpp
+        BingHtmlParser.cpp
+        UrlBuilder.cpp
+        NextQuery.cpp)

@@ -9,7 +9,6 @@
 
 class GoogleHtmlParser : public HtmlParser
 {
-
     std::string getDescriptionPattern();
 
     std::string getTitlePattern();

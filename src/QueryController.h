@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <map>
+
 #include "QueryResult.h"
 
 class QueryController {
@@ -18,6 +19,5 @@ public:
 private:
     std::map<std::string, std::string> urls;
 };
-
 
 #endif //SEARCHREQUEST_H

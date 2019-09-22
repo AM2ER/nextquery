@@ -1,7 +1,7 @@
 //
 // Created by ameer on 9/7/19.
 //
-
+#include "QueryRunner.h"
 #include "QueryController.h"
 
 QueryController::QueryController()
@@ -17,5 +17,12 @@ std::map<std::string, std::string> QueryController::getUrls()
 
 std::vector<QueryResult> QueryController::createQueryUrl(std::vector<std::string> keywords)
 {
+    QueryRunner queryRunner;
 
+    for (const auto &[key, value]: urls)
+    {
+        queryRunner.executeQuery(key, value, keywords);
+    }
+
+    queryRunner.getResults();
 }
