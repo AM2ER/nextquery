@@ -14,17 +14,17 @@ std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlP
 {
     // std::cout << "boubou " << htmlPage << std::endl;
 
-    size_t pos = htmlPage.find("<div class=\"kCrYT\"><a href=\"/url?q=", 0);
+    size_t pos = htmlPage.find(getTitlePattern(), 0);
 
     std::vector<QueryResult> queryResults;
 
     while (pos != std::string::npos)
     {
-        int shift = 35;
+        int shift = getTitleShift();
 
         pos = pos + shift;
 
-        int end_pos = htmlPage.find("\">", pos);
+        int end_pos = htmlPage.find(getTitleEndPattern(), pos);
 
         std::string url = htmlPage.substr(pos, end_pos - pos);
 
@@ -34,9 +34,9 @@ std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlP
 
         pos = end_pos;
 
-        pos = htmlPage.find("<div class=\"BNeawe vvjwJb AP7Wnd\">", pos);
+        pos = htmlPage.find(getDescriptionPattern(), pos);
 
-        pos = pos + 35;
+        pos = pos + getDescriptionShift();
 
         end_pos = htmlPage.find("<", pos);
 
@@ -46,7 +46,7 @@ std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlP
 
         pos = end_pos;
 
-        pos = htmlPage.find("<div class=\"kCrYT\"><a href=\"/url?q=", pos);
+        pos = htmlPage.find(getTitlePattern(), pos);
     }
 
     return queryResults;

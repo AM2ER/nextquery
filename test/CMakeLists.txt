@@ -11,8 +11,10 @@ add_executable(${THIS} NextQueryTest.cpp
         ../src/QueryResult.cpp
         ../src/UrlBuilder.cpp
         ../src/HttpClient.cpp
+        ../src/GoogleHtmlParser.cpp
+        ../src/BingHtmlParser.cpp
         ../src/QueryController.cpp
-        resources/query_response.html)
+        resources/google_query_response.html)
 
 target_link_libraries(${THIS} PUBLIC gtest_main curlpp)
 

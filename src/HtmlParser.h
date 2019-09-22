@@ -18,6 +18,12 @@ class HtmlParser : AbstractBase
 public:
     HtmlParser();
 
+    virtual std::string getTitlePattern() = 0;
+    virtual std::string getTitleEndPattern() = 0;
+    virtual std::string getDescriptionPattern() = 0;
+    virtual int getTitleShift() = 0;
+    virtual int getDescriptionShift() = 0;
+
     std::vector<QueryResult> parse(std::string source, std::string htmlPage);
 
 private:

@@ -2,16 +2,16 @@
 // Created by ameer on 9/15/19.
 //
 #include <gtest/gtest.h>
-#include "../src/HtmlParser.h"
 #include "FileUtil.h"
+#include "../src/GoogleHtmlParser.h"
+#include "../src/BingHtmlParser.h"
 
 // The fixture for testing class Foo.
 class HtmlParserTest : public ::testing::Test
 {
 protected:
-    // You can remove any or all of the following functions if its body
-    // is empty.
-    HtmlParser htmlParser;
+    GoogleHtmlParser googleHtmlParser;
+    BingHtmlParser bingHtmlParser;
 
     std::vector<std::string> keywords;
 
@@ -28,17 +28,32 @@ protected:
 };
 
 
-TEST_F(HtmlParserTest, parseHtmlPage)
+TEST_F(HtmlParserTest, parseGoogleHtmlPage)
 {
-    std::string htmlPage = FileUtil::readFile("../test/resources/query_response.html");
+    std::string htmlPage = FileUtil::readFile("../test/resources/google_query_response.html");
 
-    std::vector<QueryResult> results = htmlParser.parse("source", htmlPage);
+    std::vector<QueryResult> results = googleHtmlParser.parse("google", htmlPage);
 
     ASSERT_TRUE(results.size() > 1);
 
     QueryResult &queryResult = results.front();
 
-    ASSERT_EQ(queryResult.getSource(), "source");
+    ASSERT_EQ(queryResult.getSource(), "google");
     ASSERT_EQ(queryResult.getUrl(),"https://fr.wikipedia.org/wiki/C%252B%252B&amp;sa=U&amp;ved=2ahUKEwiIm_rZstLkAhUQ1RoKHTnoC7wQFnoECAsQBA&amp;usg=AOvVaw1q-f-t3-FmMZ0lbYGtK1Ud");
     ASSERT_EQ(queryResult.getDesc(),"++ &#8212; Wikip�dia");
+}
+
+TEST_F(HtmlParserTest, parseBingHtmlPage)
+{
+    std::string htmlPage = FileUtil::readFile("../test/resources/bing_query_response.html");
+
+    std::vector<QueryResult> results = bingHtmlParser.parse("bing", htmlPage);
+
+    ASSERT_TRUE(results.size() > 1);
+
+    QueryResult &queryResult = results.front();
+
+    ASSERT_EQ(queryResult.getSource(), "bing");
+    ASSERT_EQ(queryResult.getUrl(),"https://fr.wikipedia.org/wiki/C%2B%2B");
+    ASSERT_EQ(queryResult.getDesc(),"C++ — Wikip&#233;dia");
 }
