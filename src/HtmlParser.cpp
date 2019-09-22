@@ -10,7 +10,7 @@ HtmlParser::HtmlParser()
     letterMappings["%2B"] = "+";
 }
 
-std::vector<QueryResult> HtmlParser::parse(std::string htmlPage)
+std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlPage)
 {
     // std::cout << "boubou " << htmlPage << std::endl;
 
@@ -36,13 +36,13 @@ std::vector<QueryResult> HtmlParser::parse(std::string htmlPage)
 
         pos = htmlPage.find("<div class=\"BNeawe vvjwJb AP7Wnd\">", pos);
 
-        pos = pos + 36;
+        pos = pos + 35;
 
-        end_pos = htmlPage.find("\">", pos);
+        end_pos = htmlPage.find("<", pos);
 
         std::string desc = htmlPage.substr(pos, end_pos - pos);
 
-        queryResults.push_back(QueryResult(url, desc));
+        queryResults.push_back(QueryResult(source, url, desc));
 
         pos = end_pos;
 

@@ -18,7 +18,7 @@ class HtmlParser : AbstractBase
 public:
     HtmlParser();
 
-    std::vector<QueryResult> parse(std::string htmlPage);
+    std::vector<QueryResult> parse(std::string source, std::string htmlPage);
 
 private:
     std::string encode(std::string basicString);

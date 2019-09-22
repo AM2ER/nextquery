@@ -11,8 +11,6 @@ class QueryResult
 public:
     QueryResult(std::string source, std::string url, std::string desc);
 
-    QueryResult(std::string url, std::string desc);
-
     const std::string getSource() const;
     const std::string getUrl() const;
     const std::string getDesc() const;
