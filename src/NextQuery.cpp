@@ -18,9 +18,9 @@ int main(int argc, char *argv[])
 
     keywords.push_back("c++");
 
-    std::vector<QueryResult> *results = queryController.createQueryUrl(keywords);
+    std::vector<QueryResult> results = queryController.createQueryUrl(keywords);
 
-    for(QueryResult qr : *results)
+    for(QueryResult qr : results)
     {
         std::cout << qr.getSource() << " :: " << qr.getDesc() << std::endl;
         std::cout << qr.getUrl() << std::endl;

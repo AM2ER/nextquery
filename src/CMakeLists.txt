@@ -9,6 +9,7 @@ add_library(${CORE_LIB} STATIC
         QueryRunner.cpp
         QueryController.cpp
         HtmlParser.cpp
+        AbstractBase.h
         GoogleHtmlParser.cpp
         BingHtmlParser.cpp
         UrlBuilder.cpp

@@ -17,13 +17,13 @@ class QueryRunner
 {
 public:
     void executeQuery(std::string source, std::string url, std::vector<std::string> keywords);
-    std::vector<QueryResult> *getResults();
+    std::vector<QueryResult> getResults();
 
 private:
-    std::vector<std::thread> workers;
     std::mutex _mutex;
+    std::vector<std::thread> workers;
+    std::shared_ptr<std::vector<QueryResult>> results;
     void exec(std::string source, std::string url, std::vector<std::string> keywords);
 };
-
 
 #endif //NEXTQUERY_QUERYRUNNER_H

@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.7)
 
 add_definitions(-std=c++17)
+add_definitions(-pthread)
 
 # project name
 set(NextQuery NextQuery)
@@ -11,7 +12,7 @@ project(${NextQuery} CXX)
 #set compiler version
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_CXX_STANDARD 17)
-set(CXX_FLAGS "-Wall")
+set(CXX_FLAGS "-Wall -std=c++17 -pthread")
 set(CMAKE_CXX_FLAGS, "${CXX_FLAGS}")
 
 # set version number

@@ -2,30 +2,28 @@
 // Created by ameer on 9/22/19.
 //
 
-#include "QueryRunner.h"
+#include <algorithm>
 #include "HttpClient.h"
 #include "GoogleHtmlParser.h"
 #include "BingHtmlParser.h"
-
-#include <vector>
-
-std::shared_ptr<std::vector<QueryResult>> results;
+#include "QueryRunner.h"
 
 void QueryRunner::executeQuery(std::string source, std::string url, std::vector<std::string> keywords)
 {
-    const std::thread &args = std::thread(&QueryRunner::exec, source, url, keywords);
+    std::thread args = std::thread(&QueryRunner::exec, source, url, keywords);
 
     workers.emplace_back(args);
+
+    args.detach();
 }
 
-std::vector<QueryResult> *QueryRunner::getResults()
+std::vector<QueryResult> QueryRunner::getResults()
 {
-    for (std::thread &t : workers)
-    {
+    std::for_each(workers.begin(), workers.end(), [](std::thread &t) {
         t.join();
-    }
+    });
 
-    return results.get();
+    return *results.get();
 }
 
 void QueryRunner::exec(std::string source, std::string url, std::vector<std::string> keywords)
@@ -45,9 +43,11 @@ void QueryRunner::exec(std::string source, std::string url, std::vector<std::str
         htmlParser.reset(new BingHtmlParser());
     }
 
-    const std::vector<QueryResult> &searchResult = htmlParser->parse(source, htmlPage);
+    const std::vector<QueryResult> searchResult = htmlParser->parse(source, htmlPage);
 
     std::unique_lock<std::mutex> lck(_mutex);
+
     results.get()->insert(results.get()->end(), searchResult.begin(), searchResult.end());
+
     lck.unlock();
 }
