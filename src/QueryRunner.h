@@ -21,7 +21,7 @@ public:
 
 private:
     std::mutex _mutex;
-    std::vector<std::thread> workers;
+    std::vector<std::thread*> workers;
     std::shared_ptr<std::vector<QueryResult>> results;
     void exec(std::string source, std::string url, std::vector<std::string> keywords);
 };

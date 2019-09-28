@@ -10,13 +10,11 @@ HtmlParser::HtmlParser()
     letterMappings["%2B"] = "+";
 }
 
-std::vector<QueryResult> HtmlParser::parse(std::string source, std::string htmlPage)
+std::vector<QueryResult>& HtmlParser::parse(std::string source, std::string htmlPage)
 {
     // std::cout << "boubou " << htmlPage << std::endl;
 
     size_t pos = htmlPage.find(getTitlePattern(), 0);
-
-    std::vector<QueryResult> queryResults;
 
     while (pos != std::string::npos)
     {

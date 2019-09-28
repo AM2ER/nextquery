@@ -24,11 +24,12 @@ public:
     virtual int getTitleShift() = 0;
     virtual int getDescriptionShift() = 0;
 
-    std::vector<QueryResult> parse(std::string source, std::string htmlPage);
+    std::vector<QueryResult>& parse(std::string source, std::string htmlPage);
 
 private:
     std::string encode(std::string pattern);
 
+    std::vector<QueryResult> queryResults;
     std::map<std::string, std::string> letterMappings;
 };
 

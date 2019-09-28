@@ -8,24 +8,6 @@
 #include "BingHtmlParser.h"
 #include "QueryRunner.h"
 
-void QueryRunner::executeQuery(std::string source, std::string url, std::vector<std::string> keywords)
-{
-    std::thread args = std::thread(&QueryRunner::exec, source, url, keywords);
-
-    workers.emplace_back(args);
-
-    args.detach();
-}
-
-std::vector<QueryResult> QueryRunner::getResults()
-{
-    std::for_each(workers.begin(), workers.end(), [](std::thread &t) {
-        t.join();
-    });
-
-    return *results.get();
-}
-
 void QueryRunner::exec(std::string source, std::string url, std::vector<std::string> keywords)
 {
     HttpClient httpClient;
@@ -50,4 +32,20 @@ void QueryRunner::exec(std::string source, std::string url, std::vector<std::str
     results.get()->insert(results.get()->end(), searchResult.begin(), searchResult.end());
 
     lck.unlock();
+}
+
+void QueryRunner::executeQuery(std::string source, std::string url, std::vector<std::string> keywords)
+{
+    std::thread *args = new std::thread(&QueryRunner::exec, this, source, url, keywords);
+
+    workers.push_back(args);
+}
+
+std::vector<QueryResult> QueryRunner::getResults()
+{
+    std::for_each(workers.begin(), workers.end(), [](std::thread *t) {
+        t->join();
+    });
+
+    return *results.get();
 }

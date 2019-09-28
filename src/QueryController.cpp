@@ -19,9 +19,9 @@ std::vector<QueryResult> QueryController::createQueryUrl(std::vector<std::string
 {
     QueryRunner queryRunner;
 
-    for (const auto &[key, value]: urls)
+    for (const auto &[source, url]: urls)
     {
-       queryRunner.executeQuery(key, value, keywords);
+       queryRunner.executeQuery(source, url, keywords);
     }
 
     return queryRunner.getResults();
