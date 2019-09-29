@@ -5,25 +5,61 @@
 #include <iostream>
 #include "HtmlParser.h"
 
-std::vector<QueryResult> HtmlParser::parse(std::string htmlPage)
+HtmlParser::HtmlParser()
 {
-    // std::cout << "boubou " << htmlPage << std::endl;
+    letterMappings["%2B"] = "+";
+    letterMappings["%3D"] = "=";
+    letterMappings["%3F"] = "?";
+    letterMappings["&amp;"] = "&";
+    letterMappings["%252B"] = "+";
+}
 
-    size_t pos = htmlPage.find("<div class=\"kCrYT\"><a href=\"/url?q=", 0);
+std::vector<QueryResult>& HtmlParser::parse(std::string source, std::string htmlPage)
+{
+    size_t pos = htmlPage.find(getTitlePattern(), 0);
 
-    while(pos != std::string::npos)
+    while (pos != std::string::npos)
     {
-         int end_pos = htmlPage.find("\">", pos + 38);
+        int shift = getTitleShift();
 
-         std::string url = htmlPage.substr(pos, end_pos - pos);
+        pos = pos + shift;
 
-         std::cout << url << std::endl;
+        int end_pos = htmlPage.find(getTitleEndPattern(), pos);
 
-         pos = htmlPage.find("<div class=\"kCrYT\"><a href=\"/url?q=", end_pos);
+        std::string url = htmlPage.substr(pos, end_pos - pos);
+
+        int posAmpersand = url.find("&amp;");
+
+        url = url.substr(0, posAmpersand);
+
+        url = encode(url);
+
+        pos = end_pos;
+
+        pos = htmlPage.find(getDescriptionPattern(), pos);
+
+        pos = pos + getDescriptionShift();
+
+        end_pos = htmlPage.find("<", pos);
+
+        std::string desc = encode(htmlPage.substr(pos, end_pos - pos));
+
+        queryResults.push_back(QueryResult(source, url, desc));
+
+        pos = end_pos;
+
+        pos = htmlPage.find(getTitlePattern(), pos);
     }
 
-
-    std::vector<QueryResult> queryResults;
-
     return queryResults;
+}
+
+std::string HtmlParser::encode(std::string pattern)
+{
+    for (const auto &[key, value] : letterMappings)
+    {
+        pattern = ReplaceAll(pattern, key, value);
+    }
+
+    return pattern;
 }
