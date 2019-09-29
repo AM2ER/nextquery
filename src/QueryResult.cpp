@@ -5,24 +5,24 @@
 #include <string>
 #include "QueryResult.h"
 
-QueryResult::QueryResult(std::string title, std::string url, std::string desc)
+QueryResult::QueryResult(std::string source, std::string url, std::string desc)
 {
-    this->title = title;
+    this->source = source;
     this->url = url;
     this->desc = desc;
 }
 
-const std::string &QueryResult::getTitle() const
+const std::string QueryResult::getSource() const
 {
-    return title;
+    return source;
 }
 
-const std::string& QueryResult::getUrl() const
+const std::string QueryResult::getUrl() const
 {
     return url;
 }
 
-const std::string &QueryResult::getDesc() const
+const std::string QueryResult::getDesc() const
 {
     return desc;
 }

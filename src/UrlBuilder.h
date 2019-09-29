@@ -8,20 +8,17 @@
 #include <string>
 #include <vector>
 #include <map>
+#include "AbstractBase.h"
 
-class UrlBuilder
+class UrlBuilder : AbstractBase
 {
 public:
     UrlBuilder();
 
-    std::string build(std::vector<std::string> params);
+    std::string build(std::string url, std::vector<std::string> params);
 
 private:
-    std::map<char,std::string> letterMappings;
-    std::map<std::string, std::string> urls;
-
-    std::string ReplaceAll(std::string str, const char &search, const std::string& replace);
-
+    std::map<std::string,std::string> letterMappings;
 };
 
 

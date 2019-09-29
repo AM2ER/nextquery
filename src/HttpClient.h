@@ -11,7 +11,7 @@
 class HttpClient
 {
 public:
-    std::string query(std::vector<std::string> keywords);
+    std::string query(std::string url, std::vector<std::string> keywords);
 
 private:
     UrlBuilder urlBuilder;

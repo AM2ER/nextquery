@@ -3,6 +3,7 @@
 //
 #include <gtest/gtest.h>
 #include "../src/HttpClient.h"
+#include "../src/QueryController.h"
 
 // The fixture for testing class Foo.
 class HttpClientTest : public ::testing::Test
@@ -10,6 +11,7 @@ class HttpClientTest : public ::testing::Test
 protected:
     // You can remove any or all of the following functions if its body
     // is empty.
+    QueryController queryController;
     HttpClient httpClient;
 
     std::vector<std::string> keywords;
@@ -30,7 +32,7 @@ TEST_F(HttpClientTest, queryUrl)
 {
     keywords.push_back("c++");
 
-    std::string query = httpClient.query(keywords);
+    std::string query = httpClient.query(queryController.getUrls()["google"], keywords);
 
     std::cout << query << std::endl;
 
