@@ -6,6 +6,8 @@ using namespace std;
 
 void persistToHistory(vector <string> keywords);
 
+void readHistory();
+
 int main(int argc, char *argv[])
 {
     if (argc < 2)
@@ -19,19 +21,7 @@ int main(int argc, char *argv[])
 
     if (string(argv[1]) == "-h")
     {
-        string line;
-
-        ifstream file ("history.txt");
-
-        if (file.is_open())
-        {
-            while ( getline (file, line) )
-            {
-                cout << line << '\n';
-            }
-
-            file.close();
-        }
+        readHistory();
     }
     else
     {
@@ -62,6 +52,23 @@ int main(int argc, char *argv[])
     }
 
     return 0;
+}
+
+void readHistory()
+{
+    string line;
+
+    ifstream file ("history.txt");
+
+    if (file.is_open())
+    {
+        while ( getline (file, line) )
+        {
+            cout << line << '\n';
+        }
+
+        file.close();
+    }
 }
 
 void persistToHistory(vector<std::string> keywords)
